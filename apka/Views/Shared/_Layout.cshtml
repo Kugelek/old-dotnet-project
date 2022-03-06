@@ -1,0 +1,68 @@
+﻿@using ProjectMVC.Helpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] MiniJira.com</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3"
+             style="background-color:#563D7C">
+            <div class="container">
+                <a class="navbar-brand text-white"
+                   style="display:flex;flex-direction:column;align-items:center">
+                    <h2>MiniJira</h2>
+                    <h6 style="font-weight:300; margin-top:-10px;margin-right: -10px">organise ur workplace</h6>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    @await Html.PartialAsync("_LoginPartial")
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About Jira</a>
+                        </li>
+                        @if ((User.Identity.IsAuthenticated) && (User.IsInRole("Admin") || User.IsInRole("User")))
+                        {
+            @CustomHelpers.NavLink("/Projects", "Projects")
+                            @CustomHelpers.NavLink("/PlannedTasks", "PlannedTasks")}
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="jumbotron">
+                @RenderBody()
+            </div>
+        </main>
+
+    </div>
+    <div class="container" style="margin:auto; margin-bottom:50px;"> @await Html.PartialAsync("_FacebookAd")</div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container" style="color:#7510EB; border-radius: 5px; margin-left:auto; padding: 3px 3px;">
+            &copy; dzirka by Jakub Pobłocki
+            <a asp-area="" asp-controller="Home" asp-action="About">About Jira</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

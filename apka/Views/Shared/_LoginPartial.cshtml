@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProjectMVC.Helpers
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="nav navbar-nav navbar-right">
+    @if (!SignInManager.IsSignedIn(User)){
+        @CustomHelpers.NavLink("/Identity/Account/Register", "Register")
+        @CustomHelpers.NavLink("/Identity/Account/Login", "Login") 
+    }else{
+         <li class="nav-item" style="background-color:mediumpurple; padding: 7px 14px; border-radius: 5px">
+              <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hi @User.Identity.Name!</a>
+         </li>
+         <li class="nav-item" style="background-color:mediumpurple; padding: 7px 14px; border-radius: 5px;margin-left: 10px;">
+              <form class="form-inline" asp-area="Identity" 
+                    asp-page="/Account/Logout" 
+                    asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                   <button type="submit" 
+                           class="nav-link btn btn-link text-white">Logout</button>
+               </form>
+         </li>}
+</ul>

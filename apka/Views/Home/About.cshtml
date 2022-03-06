@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] About minijira</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/about.css" />
+    <style>
+        .about{
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-content: center;
+            
+        }
+        .arrow {
+            background-color: #ddc5f9;
+            width: 10px;
+            height: 100px;
+            margin: 10px;
+        }
+        .instruction{
+            margin: auto;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+       
+        }
+        .step{
+            font-size:3rem;
+            color: rebeccapurple;
+            font-weight: 300;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="about">
+        <div class="instruction">
+           
+                <div class="step">1. Create a new project for your company</div>
+                <div class="arrow"></div>
+                <div class="step">2. Let your coworkers register</div>
+                <div class="arrow"></div>
+                <div class="step">3. Add some task for each project</div>
+         
+        </div>
+        <div class="about__description"></div>
+    </div>
+</body>

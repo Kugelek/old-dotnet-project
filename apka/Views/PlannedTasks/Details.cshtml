@@ -1,0 +1,46 @@
+﻿@model ProjectMVC.Models.PlannedTask
+@using ProjectMVC.Helpers
+
+@{ ViewData["Title"] = "Details"; }
+
+<h1>Details</h1>
+
+<div>
+    <h4>PlannedTask</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.taskType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.taskType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.importance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.importance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.project)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.project.name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn-primary btn-sm btn" asp-action="Index">Powrót</a>
+</div>

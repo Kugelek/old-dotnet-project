@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ProjectMVC.Models.PlannedTask>
+@using ProjectMVC.Helpers
+@{ ViewData["Title"] = "Index"; }
+
+<h1>Your planned tasks</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+@if (User.IsInRole("Admin"))
+{
+@CustomHelpers.Create("PlannedTasks")}}
+
+<form asp-controller="PlannedTasks" asp-action="Index" method="get">
+    <p>
+        Filter tasks by task's name 
+        <input type="text" name="name">
+    </p>
+    <div style="display: flex;">
+        <input class=" btn-sm btn" style="background-color:rebeccapurple; color:white;" type="submit" value="Search" />
+        <a class=" btn-sm btn" style="background-color:rebeccapurple; color:white;margin-left: 10px;" asp-action="Index">Reset</a>
+    </div>
+</form>
+<p></p>
+
+<p></p>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.taskType)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.importance)
+            </th>
+            @if (User.Identity.IsAuthenticated)
+            {
+@if (User.IsInRole("Admin"))
+{
+<th></th>                }            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.taskType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.importance)
+    </td>
+    <td>
+        @if (User.Identity.IsAuthenticated)
+        {
+@if (User.IsInRole("User"))
+{
+@CustomHelpers.Details("PlannedTasks", @item.Id)}
+                    @if (User.IsInRole("Admin"))
+                    {
+@CustomHelpers.Control("PlannedTasks", @item.Id)}}
+    </td>
+</tr>}
+    </tbody>
+</table>

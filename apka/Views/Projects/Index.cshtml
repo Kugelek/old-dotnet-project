@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProjectMVC.Models.Project>
+@using ProjectMVC.Helpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Projects in company</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole("Admin"))
+    {
+        @CustomHelpers.Create("Projects")
+    }
+}
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.deadline)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deadline)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("User"))
+                    {
+                        @CustomHelpers.Details("Projects", @item.Id)
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @CustomHelpers.Control("Projects", @item.Id)
+                    }
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

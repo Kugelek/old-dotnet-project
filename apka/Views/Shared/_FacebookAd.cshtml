@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProjectMVC.Helpers
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="fb-ad">
+    @if (!SignInManager.IsSignedIn(User))
+    {
+    <div class="ad" style="display: flex; flex-direction:column; margin-left:auto; margin-bottom:50px; background-color:#a779f2; padding-bottom:-15px; width:35vw;">
+        <p style="padding:15px" class="nav-link text-white" title="Manage">Dear guest</p>
+        <p style="padding:15px">Please check out our social medias!</p>
+        <div style="display: flex; padding: 20px;">
+            <div style="background-color:cornflowerblue; color: white;padding: 15px; margin:5px;border-radius: 50%">
+                <a href="facebook.com">FB</a>
+            </div>
+            <div style="background-color:darkred; padding:15px; color: white; margin: 5px;border-radius: 50%">
+                <a href="google.com">G+</a>
+</div>
+            <div style="background-color:lightseagreen;color: white; padding: 15px; margin:5px; border-radius: 50%">
+                <a href="linkedin.com">IN</a>
+            </div>
+        </div>
+
+    </div>
+    }
+                     
+</div>

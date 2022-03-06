@@ -1,0 +1,38 @@
+﻿@model ProjectMVC.Models.Project
+
+@{ ViewData["Title"] = "Delete"; }
+
+<h1>Usuń</h1>
+
+<h4>Czy na pewno chcesz usunąć Projekt? Ta operacja jest nieodwracalna</h4>
+<div>
+    <h5>Project</h5>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.deadline)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.deadline)
+        </dd>
+ 
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn-primary btn" asp-action="Index">Powrót</a>
+    </form>
+</div>
